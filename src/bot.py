@@ -13,3 +13,4 @@ class SivBot(discord.Client):
 
     async def on_member_join(self, member: discord.Member):
         await utils.add_guest_role(member)
+        await utils.new_members_greetings(member)
