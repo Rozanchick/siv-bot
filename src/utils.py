@@ -99,5 +99,5 @@ async def new_members_greetings(member: discord.Member):
         logging.error(f'Roles grant channel not found. Id: {ROLES_GRANT_CHANNEL_ID}')
         return
 
-    welcome_message = f"Привет, {member.mention}! Добро пожаловать на сервер! 🎉\n Для доп. информации просьба ознакомиться с {rules_channel.mention} и {roles_grant_channel.mention}."
+    welcome_message = f"Привет, {member.mention}! Добро пожаловать на сервер! 🎉\nДля доп. информации просьба ознакомиться с {rules_channel.mention} и {roles_grant_channel.mention}."
     await channel.send(welcome_message)
