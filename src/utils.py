@@ -1,6 +1,5 @@
 import discord
 import logging
-from bot import SivBot
 
 GuestRoleId = 1167877977363726378
 
@@ -16,7 +15,7 @@ emoji_to_role = {
 }
 role_message_id = 1189307422922256464
 
-async def edit_role_on_reaction(bot_instance: SivBot, payload, operation = 'add'):
+async def edit_role_on_reaction(bot_instance, payload, operation = 'add'):
     """Adds or removes a role based on a reaction emoji."""
     # Make sure that the message the user is reacting to is the one we care about.
     if payload.message_id != role_message_id:

@@ -1,5 +1,5 @@
 import discord
-import utils
+import src.utils as utils
 
 class SivBot(discord.Client):
     def __init__(self, *args, **kwargs):
