@@ -11,5 +11,5 @@ class SivBot(discord.Client):
     async def on_raw_reaction_remove(self, payload: discord.RawReactionActionEvent):
         await utils.edit_role_on_reaction(self, payload, 'remove')
 
-    async def on_member_join(member: discord.Member):
+    async def on_member_join(self, member: discord.Member):
         await utils.add_guest_role(member)

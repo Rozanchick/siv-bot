@@ -67,8 +67,18 @@ async def edit_role_to_member(member: discord.Member, roles, operation = 'add'):
         pass
 
 async def add_guest_role(member: discord.Member):
+    guild = member.guild
+    if guild is None:
+        # Check if we're still in the guild and it's cached.
+        return
+
+    role = guild.get_role(GuestRoleId)
+    if role is None:
+        # Make sure the role still exists and is valid.
+        logging.warning(f'Guest role not found. Role id: {GuestRoleId}')
+        return
     try:
-        await edit_role_to_member(member, GuestRoleId, operation = 'add')
+        await edit_role_to_member(member, role, operation = 'add')
     except discord.HTTPException:
         logging.error('Error on member.add_roles')
         pass
