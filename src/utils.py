@@ -39,7 +39,18 @@ async def edit_role_on_reaction(bot_instance, payload, operation = 'add'):
         logging.warning(f'Role not found. Role id: {role_id}')
         return
 
-    edit_role_to_member(payload.member, operation, role)
+    if operation == 'remove':
+        # The payload for `on_raw_reaction_remove` does not provide `.member`
+        # so we must get the member ourselves from the payload's `.user_id`.
+        member = guild.get_member(payload.user_id)
+        if member is None:
+            # Make sure the member still exists and is valid.
+            logging.warning(f'Member not found. payload.user_id: {payload.user_id}')
+            return
+    else:
+        member = payload.member
+
+    await edit_role_to_member(member, role, operation)
 
 async def edit_role_to_member(member: discord.Member, roles, operation = 'add'):
     """Wrapper for add or remove roles methods."""

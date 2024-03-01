@@ -6,10 +6,10 @@ class SivBot(discord.Client):
         super().__init__(*args, **kwargs)
 
     async def on_raw_reaction_add(self, payload: discord.RawReactionActionEvent):
-        utils.edit_role_on_reaction(self, payload, 'add')
+        await utils.edit_role_on_reaction(self, payload, 'add')
 
     async def on_raw_reaction_remove(self, payload: discord.RawReactionActionEvent):
-        utils.edit_role_on_reaction(self, payload, 'remove')
+        await utils.edit_role_on_reaction(self, payload, 'remove')
 
     async def on_member_join(member: discord.Member):
-        utils.add_guest_role(member)
+        await utils.add_guest_role(member)
